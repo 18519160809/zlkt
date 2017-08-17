@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    详情页
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detail.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h3 id="h333">{{ q.title }}</h3>
+    <p class="question-info">
+        <span>作者： {{ q.author.username }}</span>
+        <span>时间： {{ q.create_time }}</span>
+    </p>
+    <hr>
+    <p class="question-content">{{ q.content }}</p>
+    <hr>
+    <h4 class="pinglun">评论：（0）</h4>
+    <form action="{{ url_for('add_answer') }}" method="post">
+        <input type="text" class="form-control" name="ans" placeholder="请填写评论">
+        <input type="hidden" name="question_id" value="{{ q.id }}">
+        <button class="btn btn-primary">立即评论</button>
+    </form>
+    <hr>
+    <ul class="answer-list">
+    {% for i in q.answer %}
+        <li class="answer-li">
+            <div class="user-info">
+                <img src="{{ url_for('static', filename='images/zhiliao.png') }}" alt="" class="avatar">
+                <span class="username">{{ i.author.username }}</span>
+                <span class="create_time">{{ i.create_time }}</span>
+                <p class="answer-content">{{ i.content }}</p>
+
+            </div>
+        </li>
+        {% endfor %}
+
+{#        <li class="answer-li">#}
+{#            <div class="user-info">#}
+{#                <img src="{{ url_for('static', filename='images/zhiliao.png') }}" alt="" class="avatar">#}
+{#                <span class="username">曹操</span>#}
+{#                <span class="create_time">2107-12-02 12:30:30</span>#}
+{#                <p class="answer-content">这是评论的具体内容</p>#}
+{##}
+{#            </div>#}
+{#        </li>#}
+
+    </ul>
+{% endblock %}

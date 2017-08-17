@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    注册
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+{% endblock %}
+
+{% block content %}
+
+    <h3 id="h333">注册</h3>
+
+    <form method="post">
+        {{ form.csrf_token }}
+        <div class="form-group anniu">
+            {{ form.telephone }}
+        </div>
+        <div class="form-group anniu">
+            {{ form.username }}
+        </div>
+        <div class="form-group anniu">
+            {{ form.password1 }}
+        </div>
+        <div class="form-group anniu">
+            {{ form.password2 }}
+        </div>
+
+        <div class="form-group anniu">
+            {{ form.confirm }}
+        </div>
+
+    </form>
+
+{% endblock %}
